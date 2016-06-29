@@ -1,3 +1,4 @@
+import java.util.regex.*;
 import java.io.*;
 
 class About{
@@ -5,6 +6,7 @@ class About{
 		final String PATH = "/home/deadboy/VKPlayer/";
 		final String files[] = {"-77288583_365257942.da0", "-77288583_365257963.da0", "-77288583_365257996.da0", 
 			"-77288583_365258037.da0", "-77288583_365258096.da0"};
+		String file_names[] = new String[files.length];
 		/*
 		File Folder = new File(PATH);
 		File[] files = Folder.listFiles();
@@ -13,14 +15,25 @@ class About{
 		for (int a = 0; a < 5; a++) {
 			try (BufferedReader reader = new BufferedReader(new FileReader(PATH + files[a]))) {
 				String s;
-				for (int i = 0; i < 2; i++) {
+				s = reader.readLine();
+				for (int i = 0; i < 1; i++) {
 					s = reader.readLine();
-
-					System.out.println(s + "\n");
+					s = s.substring(15);
+					Pattern p = Pattern.compile("^(.)*TPE1\\W");
+					Matcher m = p.matcher(s);
+					if (m.find()) {
+						s = m.group().substring(0, m.group().length() - 5);
+						file_names[i] = s;
+						System.out.println("Name: " + s);
+					}
 				}
+				System.out.println();
 			} catch(IOException e) {
 				System.out.println("File not found!");
 			}
+		}
+		for (int i = 0; i < files.length; i++) {
+			
 		}
 	}
 } 
