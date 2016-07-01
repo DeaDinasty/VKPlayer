@@ -16,23 +16,20 @@ class About{
 			try (BufferedReader reader = new BufferedReader(new FileReader(PATH + files[a]))) {
 				String s;
 				s = reader.readLine();
-				for (int i = 0; i < 1; i++) {
 					s = reader.readLine();
 					s = s.substring(15);
 					Pattern p = Pattern.compile("^(.)*TPE1\\W");
 					Matcher m = p.matcher(s);
 					if (m.find()) {
-						s = m.group().substring(0, m.group().length() - 8);
-						file_names[i] = s;
-						System.out.println("Name: " + s);
+						s = m.group().substring(0, m.group().length() - 5);
+						file_names[a] = s;
 					}
-				}
+					System.out.println("Name: " + file_names[a]);
 			} catch(IOException e) {
 				System.out.println("File not found!");
 			}
 		} //Можно объединить циклы
 		for (int i = 0; i < file_names.length; i++) {
-			System.out.println(file_names[i]);
 			String name = file_names[i] + ".mp3";
 			System.out.println(PATH + name);
 			File newFile = new File(PATH + name);
