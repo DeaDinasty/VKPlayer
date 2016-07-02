@@ -14,17 +14,17 @@ class About{
 		*/
 		for (int a = 0; a < 5; a++) {
 			try (BufferedReader reader = new BufferedReader(new FileReader(PATH + files[a]))) {
-				String s;
+				String s, cleanLine = "";
 				s = reader.readLine();
 					s = reader.readLine();
 					s = s.substring(15);
-					Pattern p = Pattern.compile("^(.)*TPE1\\W");
+					Pattern p = Pattern.compile("^(.)*TPE1");
 					Matcher m = p.matcher(s);
-					if (m.find()) {
+					if (m.find()) 
 						s = m.group().substring(0, m.group().length() - 5);
-						file_names[a] = s;
-					}
-					System.out.println("Name: " + file_names[a]);
+					for (int i = 0; i < s.length()-1; i++) 
+						if (s.charAt(i) != s.charAt(s.length()-1)) cleanLine += s.charAt(i);
+					file_names[a] = cleanLine;
 			} catch(IOException e) {
 				System.out.println("File not found!");
 			}
