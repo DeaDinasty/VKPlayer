@@ -28,6 +28,10 @@ public class Search {
 		return filesNumber;
 	}
 
+	public boolean getFileExist(String PATH) {
+		return fileExist(PATH);
+	}
+
 	private boolean accept(String name) {
 		m = p.matcher(name);
 		if (m.matches()) return true;
@@ -57,4 +61,12 @@ public class Search {
 			}
 		}
 	}
+
+	private boolean fileExist(String PATH) {
+		File path = new File(PATH);
+		if (path.exists()) 
+			if (path.isFile()) return true;
+		return false;
+	}
+
 }
