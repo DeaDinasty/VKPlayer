@@ -40,7 +40,7 @@ public class Search {
 		p = Pattern.compile(mask, Pattern.CASE_INSENSITIVE);
 		filesNumber = 0;
 		totalLength = 0;
-		ArrayList res = new ArrayList(1000);
+		ArrayList res = new ArrayList();
 		searchFiles(directory, res);
 		return res;
 	}
@@ -51,7 +51,7 @@ public class Search {
 			if (list[i].isFile()) {
 				if (accept(list[i].getName())) {
 					filesNumber++;
-					totalLength +=list[i].length();
+					totalLength += list[i].length();
 					res.add(list[i]);
 				}
 			}
