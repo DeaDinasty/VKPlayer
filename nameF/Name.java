@@ -15,8 +15,8 @@ public class Name {
 	private long arr[];
 	private List da0files;
 
-	public String[] getNames(String PATH, List FILES) {
-		return NamesFromFile(PATH, FILES);
+	public String[] getNames(List FILES) {
+		return NamesFromFile(FILES);
 	}
 
 	public void goQuickSort(long array[], List da0) {
@@ -29,7 +29,7 @@ public class Name {
 		return arr;
 	}
 
-	private String[] NamesFromFile(String PATH, List FILES) {
+	private String[] NamesFromFile(List FILES) {
 		String[] names = new String[FILES.size()];
 		for (int i = 0; i < FILES.size(); i++) {
 			try (BufferedReader reader = new BufferedReader(new FileReader(FILES.get(i).toString()))){

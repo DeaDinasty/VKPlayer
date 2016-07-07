@@ -1,5 +1,6 @@
 import searchF.Search;
 import nameF.Name;
+import convF.Convert;
 import java.util.*;
 
 class main {
@@ -11,7 +12,7 @@ class main {
 		System.out.println("Founded " + search.getFilesNumber() + " files.");
 		System.out.println("Total size: " + (float) search.getTotalLength() / (1024*1024) + "Mb.");
 		Name name = new Name();
-		String[] files_names = name.getNames(PATH, files_da0); //String[] names of files
+		String[] files_names = name.getNames(files_da0); //String[] names of files
 		System.out.println("\nReal files names: ");
 		for (String files : files_names) System.out.println(files);
 		System.out.println("\nSearching true name files: ");
@@ -26,5 +27,6 @@ class main {
 		dates = name.getArray();
 		for (int i = 0; i < dates.length; i++) 
 			System.out.println(dates[i] + "\t" + files_da0.get(i));
+		new Convert().convertF(MUSIC_PATH, files_da0, files_names);
 	}
 }
