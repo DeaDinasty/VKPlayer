@@ -3,6 +3,7 @@ package searchF;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -30,6 +31,14 @@ public class Search {
 
 	public boolean getFileExist(String PATH) {
 		return fileExist(PATH);
+	}
+
+	public boolean getPathExist(String PATH, boolean create) {
+		return pathExist(PATH, create);
+	}
+
+	public long[] getFilesDate(List da0files) {
+		return filesDate(da0files);
 	}
 
 	private boolean accept(String name) {
@@ -67,6 +76,23 @@ public class Search {
 		if (path.exists()) 
 			if (path.isFile()) return true;
 		return false;
+	}
+
+	private boolean pathExist(String PATH, boolean create) {
+		File dir = new File(PATH);
+		if (dir.exists()) if (dir.isDirectory()) return true;
+		if (create) {
+			dir.mkdirs();
+			return false;
+		}
+		return false;
+	}
+
+	private long[] filesDate(List da0files) {
+		long[] dates = new long[da0files.size()];
+		for (int i = 0; i < da0files.size(); i++) 
+			dates[i] = new File(da0files.get(i).toString()).lastModified();
+		return dates;
 	}
 
 }
